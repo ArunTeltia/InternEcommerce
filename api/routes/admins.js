@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+const config = require("config");
 const Admin = require("../models/admin");
 
 router.get("/", (req, res, next) => {
@@ -94,7 +94,7 @@ router.post("/login", (req, res, next) => {
                 iat: Math.floor(Date.now() / 1000) - 30,
                 exp: Math.floor(Date.now() / 1000) + 60 * 60,
               };
-              jwt.sign(payload, "mysecretkey", function (err, token) {
+              jwt.sign(payload, config.get("jwtSecret"), function (err, token) {
                 if (err) {
                   return res.status(200).json({
                     error: "err",
