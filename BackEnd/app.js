@@ -10,7 +10,6 @@ mongoose.connect(
       console.log("mongodb running");
   }
 );
-
 const adminRoutes = require("./api/routes/admins");
 const categoryRoutes = require("./api/routes/categories");
 const userRoutes = require("./api/routes/users");
